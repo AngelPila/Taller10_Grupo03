@@ -160,5 +160,52 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
         
-    } 
+        // TODO review the generated test code and remove the default call to fail.
+    }
+      @Test
+    @DisplayName("Test de solo multiplicaciones")
+    public void testSolve6() {
+        System.out.println("Solve");
+        String formula = "12*12*13";
+        String expResult = "12*12*13=1872";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    @DisplayName("Test probando una division para 0")
+    public void testSolve7() {
+        System.out.println("Solve");
+        String formula = "50+34/0*2";
+        assertThrows(ArithmeticException.class, ()->{ Operations.Solve(formula);});
+    }
+
+    @Test
+    @DisplayName("Test probando una expresion vacia")
+    public void testSolve8() {
+        System.out.println("Solve");
+        String formula = " ";
+        assertThrows(StringIndexOutOfBoundsException.class, ()->{ Operations.Solve(formula);});
+    }
+
+    @Test
+    @DisplayName("Test de valores con tres cifras")
+    public void testSolve9() {
+        System.out.println("Solve");
+        String formula = "100+130*122-123";
+        String expResult = "100+130*122-123=15837";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
+ @Test
+    @DisplayName("Test de solo divisiones")
+    public void testSolve10() {
+        System.out.println("Solve");
+        String formula = "500/20/4";
+        String expResult = "500/20/4=6";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+    }
 }
