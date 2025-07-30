@@ -53,10 +53,11 @@ public class OperationsTest {
      * Test of Solve method, of class Operations.
      */
     @Test
+    @DisplayName("Sumas con 2 caracteres por operando")
     public void testSolve() {
         System.out.println("Solve");
-        String formula = "";
-        String expResult = "";
+        String formula = "01+01+05*09/09";
+        String expResult = "01+01+05*09/09=7";
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
