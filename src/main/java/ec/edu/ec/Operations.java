@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package calculatorsmp;
+package ec.edu.ec;
+
 import java.util.Stack;
-/**
- *
- * @author Djurado
- */
+
 public class Operations {
 
     private static String[] op = { "+", "-", "*", "/" };// Operation set
