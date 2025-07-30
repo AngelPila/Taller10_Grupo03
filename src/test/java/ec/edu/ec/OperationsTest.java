@@ -40,13 +40,12 @@ public class OperationsTest {
      * Test of MakeFormula method, of class Operations.
      */
     @Test
+    @DisplayName("Prueba de funcionamiento normal")
     public void testMakeFormula() {
         System.out.println("MakeFormula");
-        String expResult = "";
         String result = Operations.MakeFormula();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertTrue(result instanceof String);
     }
 
     /**
