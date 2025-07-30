@@ -7,10 +7,13 @@ package ec.edu.ec;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -49,18 +52,39 @@ public class OperationsTest {
         assertTrue(result instanceof String);
     }
 
+    @Test
+    @DisplayName("Prueba de estructura adecuada")
+    public void testMakeFormulaStructure(){
+        String formula = Operations.MakeFormula();
+        char last = formula.charAt(0);
+        Boolean validacion = false;
+        ArrayList<Character> operadores = new ArrayList<>();
+        operadores.add('+');
+        operadores.add('-');
+        operadores.add('/');
+        operadores.add('*');
+        for(int i = 1; i < formula.length(); i++){
+            char caracter = formula.charAt(i);
+            if(operadores.contains(last) && operadores.contains(caracter)){
+                validacion = true;
+            }
+            last = caracter;
+        }
+        assertTrue(validacion);
+    }
+
     /**
      * Test of Solve method, of class Operations.
      */
     @Test
+    @DisplayName("Sumas con 2 caracteres por operando")
     public void testSolve() {
         System.out.println("Solve");
-        String formula = "";
-        String expResult = "";
+        String formula = "01+01+05*09/09";
+        String expResult = "01+01+05*09/09=7";
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
     @Test
