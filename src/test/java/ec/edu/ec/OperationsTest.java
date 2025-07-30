@@ -11,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
 
@@ -44,16 +43,16 @@ public class OperationsTest {
      * Test of MakeFormula method, of class Operations.
      */
     @Test
-    @DisplayName("Prueba de funcionamiento normal")
+    @DisplayName("Test de retorna String")
     public void testMakeFormula() {
         System.out.println("MakeFormula");
         String result = Operations.MakeFormula();
 
-        assertTrue(result instanceof String);
+        assertTrue(result instanceof String, "El resultado debe ser una cadena de texto");
     }
 
     @Test
-    @DisplayName("Prueba de estructura adecuada")
+    @DisplayName("Test de formato adecuado")
     public void testMakeFormulaStructure(){
         String formula = Operations.MakeFormula();
         char last = formula.charAt(0);
@@ -70,23 +69,46 @@ public class OperationsTest {
             }
             last = caracter;
         }
-        assertTrue(validacion);
+        assertTrue(validacion, "La fórmula no cumple con el formato adecuado");
     }
+
+    
+    @Test
+    @DisplayName("Test de primer caracter no operador")
+    public void testMakeFormulaFirstCharacter() {
+        String formula = Operations.MakeFormula();
+        char first = formula.charAt(0);
+        ArrayList<Character> operadores = new ArrayList<>();
+        operadores.add('+');
+        operadores.add('-');
+        operadores.add('/');
+        operadores.add('*');
+        assertFalse(operadores.contains(first), "El primer carácter no debe ser un operador");
+    }
+
+    @Test
+    @DisplayName("Test de al menos un operador")
+    public void testMakeFormulaAtLeastOneOperator() {
+        String formula = Operations.MakeFormula();
+        ArrayList<Character> operadores = new ArrayList<>();
+        operadores.add('+');
+        operadores.add('-');
+        operadores.add('/');
+        operadores.add('*');
+        boolean hasOperator = false;
+        for (char c : formula.toCharArray()) {
+            if (operadores.contains(c)) {
+                hasOperator = true;
+                break;
+            }
+        }
+        assertTrue(hasOperator, "La fórmula debe contener al menos un operador");
+    }
+
 
     /**
      * Test of Solve method, of class Operations.
-     */
-    @Test
-    public void testSolve() {
-        System.out.println("Solve");
-        String formula = "";
-        String expResult = "";
-        String result = Operations.Solve(formula);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+     */    
     @Test
     @DisplayName("Test de valores con una sola cifra")
     public void testSolve2() {
@@ -95,8 +117,8 @@ public class OperationsTest {
         String expResult = "2+2+3+4=11";
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
     }
+
     @Test
     @DisplayName("Test de valores con dos cifras")
     public void testSolve3() {
@@ -105,8 +127,8 @@ public class OperationsTest {
         String expResult = "12+12*12-12=144";
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
     }
+
     @Test
     @DisplayName("Test de valores nulos")
     public void testSolve4() {
@@ -116,8 +138,8 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
         
-        // TODO review the generated test code and remove the default call to fail.
     }
+
     @Test
     @DisplayName("Test de valores nulos")
     public void testSolve5() {
@@ -127,8 +149,5 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expResult, result);
         
-        // TODO review the generated test code and remove the default call to fail.
-    }
-    
-    
+    } 
 }
