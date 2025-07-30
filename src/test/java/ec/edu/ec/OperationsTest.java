@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 
 /**
  *
@@ -62,5 +63,49 @@ public class OperationsTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    
+    @Test
+    @DisplayName("Test de valores con una sola cifra")
+    public void testSolve2() {
+        System.out.println("Solve");
+        String formula = "2+2+3+4";
+        String expResult = "2+2+3+4=11";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    @Test
+    @DisplayName("Test de valores con dos cifras")
+    public void testSolve3() {
+        System.out.println("Solve");
+        String formula = "12+12*12-12";
+        String expResult = "12+12*12-12=144";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    @Test
+    @DisplayName("Test de valores nulos")
+    public void testSolve4() {
+        System.out.println("Solve");
+        String formula = "12+12*12-0";
+        String expResult = "12+12*12-0=156";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+        
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    @Test
+    @DisplayName("Test de valores nulos")
+    public void testSolve5() {
+        System.out.println("Solve");
+        String formula = "12+12*0";
+        String expResult = "12+12*0=12";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result);
+        
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
     
 }
